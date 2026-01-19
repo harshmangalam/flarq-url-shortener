@@ -1,13 +1,14 @@
 import { Hono } from "hono";
 import { HTTP_STATUS, STATUS_TEXT } from "./utils/http-status";
-import { drizzle, DrizzleD1Database } from "drizzle-orm/d1";
+import { drizzle } from "drizzle-orm/d1";
 import { urlsTable } from "./db/schema/urls";
 import { encodeBase62 } from "./utils/base62";
 import { eq } from "drizzle-orm";
-
+import { KVNamespace, D1Database } from "@cloudflare/workers-types";
 type Bindings = {
-  DB: DrizzleD1Database;
+  DB: D1Database;
   DOMAIN: string;
+  KV: KVNamespace;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -52,6 +53,13 @@ app.get("/:shortCode", async (c) => {
     return c.text("Not found", 404);
   }
 
+  const cacheKey = `short:${shortCode}`;
+  const cached = await c.env.KV.get(cacheKey);
+
+  if (cached) {
+    return c.redirect(cached, HTTP_STATUS.FOUND);
+  }
+
   const db = drizzle(c.env.DB);
   const result = await db
     .select({ longUrl: urlsTable.longUrl })
@@ -65,6 +73,8 @@ app.get("/:shortCode", async (c) => {
 
   const longUrl = result[0].longUrl;
 
+  // cache result in kv
+  await c.env.KV.put(cacheKey, longUrl);
   return c.redirect(longUrl, HTTP_STATUS.FOUND);
 });
 

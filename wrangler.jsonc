@@ -12,18 +12,18 @@
       "migrations_table": "d1_migrations",
     },
   ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "c8581388bc1f4fc1b420d46c50a04155",
+    },
+  ],
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
   // "r2_buckets": [
   //   {
   //     "binding": "MY_BUCKET",
