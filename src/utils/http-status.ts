@@ -8,6 +8,7 @@ export const HTTP_STATUS = {
 
   // Client errors
   BAD_REQUEST: 400,
+  NOT_FOUND: 404,
 
   // Server errors
   INTERNAL_SERVER_ERROR: 500,
@@ -19,5 +20,6 @@ export const STATUS_TEXT: Record<number, string> = {
   201: "Created",
   302: "Found",
   400: "Bad Request",
+  404: "Not Found",
   500: "Internal Server Error",
 };

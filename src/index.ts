@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { HTTP_STATUS } from "./utils/http-status";
+import { HTTP_STATUS, STATUS_TEXT } from "./utils/http-status";
 import { drizzle, DrizzleD1Database } from "drizzle-orm/d1";
 import { urlsTable } from "./db/schema/urls";
 import { encodeBase62 } from "./utils/base62";
@@ -43,8 +43,28 @@ api.post("/urls", async (c) => {
 });
 
 app.route("/", api);
+
 app.get("/:shortCode", async (c) => {
-  const longUrl = "http://localhost:8787";
+  const shortCode = c.req.param("shortCode");
+
+  // validate base62
+  if (!/^[a-zA-Z0-9]+$/.test(shortCode)) {
+    return c.text("Not found", 404);
+  }
+
+  const db = drizzle(c.env.DB);
+  const result = await db
+    .select({ longUrl: urlsTable.longUrl })
+    .from(urlsTable)
+    .where(eq(urlsTable.shortCode, shortCode))
+    .limit(1);
+
+  if (result.length === 0) {
+    return c.text(STATUS_TEXT[HTTP_STATUS.NOT_FOUND], HTTP_STATUS.NOT_FOUND);
+  }
+
+  const longUrl = result[0].longUrl;
+
   return c.redirect(longUrl, HTTP_STATUS.FOUND);
 });
 
