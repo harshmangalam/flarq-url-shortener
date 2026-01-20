@@ -8,4 +8,7 @@ export const urlsTable = sqliteTable("urls", {
   createdAt: integer("created_at", { mode: "timestamp_ms" })
     .notNull()
     .default(sql`(unixepoch() * 1000)`),
+
+  expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
+  isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
 });
