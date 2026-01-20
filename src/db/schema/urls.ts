@@ -11,4 +11,5 @@ export const urlsTable = sqliteTable("urls", {
 
   expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
   isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
+  clicks: integer("clicks").notNull().default(0),
 });

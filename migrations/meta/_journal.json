@@ -15,6 +15,13 @@
       "when": 1768890811063,
       "tag": "0001_omniscient_thing",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1768924536416,
+      "tag": "0002_url_clicks",
+      "breakpoints": true
     }
   ]
 }

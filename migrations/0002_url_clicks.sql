@@ -1,0 +1,1 @@
+ALTER TABLE `urls` ADD `clicks` integer DEFAULT 0 NOT NULL;
