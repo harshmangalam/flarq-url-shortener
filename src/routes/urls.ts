@@ -4,7 +4,7 @@ import { encodeBase62 } from "../utils/base62";
 import { eq } from "drizzle-orm";
 import { createRouter } from "@/utils/router";
 
-const urlsRoutes = createRouter();
+const urlsRoutes = createRouter().basePath("/urls");
 
 urlsRoutes.post("/", async (c) => {
   // parse the request json body

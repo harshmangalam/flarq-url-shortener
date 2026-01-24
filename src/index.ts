@@ -3,11 +3,8 @@ import urlRedirectRoutes from "./routes/urls-redirect";
 import { createRouter } from "./utils/router";
 
 const app = createRouter();
-const apiRoutes = createRouter().basePath("/api/v1");
 
-apiRoutes.route("/", urlsRoutes);
-
-app.route("/", apiRoutes);
+app.route("/api/v1", urlsRoutes);
 app.route("/", urlRedirectRoutes);
 
 export default app;
