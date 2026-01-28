@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/d1";
-import { urlsTable } from "../db/schema/urls";
+import { urlsTable } from "../lib/db/schema/urls";
 import { encodeBase62 } from "../utils/base62";
 import { eq } from "drizzle-orm";
 import { createRouter } from "@/utils/router";

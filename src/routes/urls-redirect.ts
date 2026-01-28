@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/d1";
-import { urlsTable } from "../db/schema/urls";
+import { urlsTable } from "../lib/db/schema/urls";
 import { eq } from "drizzle-orm";
 import { CachedUrl } from "../types/cache";
 import { HTTP_STATUS, STATUS_TEXT } from "../utils/http-status";
