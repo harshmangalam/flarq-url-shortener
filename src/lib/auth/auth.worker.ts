@@ -5,11 +5,21 @@ import { getDB } from "@/lib/db/db.worker";
 
 export const createAuth = (c: Context) => {
   const db = getDB(c);
+  const trustedOrigins =
+    c.env.TRUSTED_ORIGINS?.split(",")
+      .map((o: string) => o.trim())
+      .filter(Boolean) ?? [];
 
   return betterAuth({
     database: drizzleAdapter(db, {
       provider: "sqlite",
     }),
+    emailAndPassword: {
+      enabled: true,
+    },
+    // Allow requests from the frontend development server
+    trustedOrigins,
+    basePath: "/api/v1/auth",
   });
 };
 

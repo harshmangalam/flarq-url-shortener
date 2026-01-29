@@ -2,7 +2,7 @@
   "name": "flarq",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --persist-to=./cf-dev",
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "migrate-local": "wrangler d1 migrations apply DB --local"
