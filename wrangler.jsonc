@@ -10,7 +10,6 @@
       "database_id": "21f90bb7-7960-4d0e-b03d-c0f90141fb0c",
       "migrations_dir": "migrations",
       "migrations_table": "d1_migrations",
-      "preview_database_id": "local-test-db",
     },
   ],
   "kv_namespaces": [

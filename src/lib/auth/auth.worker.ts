@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { Context } from "hono";
 import { getDB } from "@/lib/db/db.worker";
+import * as schema from "@/lib/db/schema";
 
 export const createAuth = (c: Context) => {
   const db = getDB(c);
@@ -13,6 +14,7 @@ export const createAuth = (c: Context) => {
   return betterAuth({
     database: drizzleAdapter(db, {
       provider: "sqlite",
+      schema,
     }),
     emailAndPassword: {
       enabled: true,
