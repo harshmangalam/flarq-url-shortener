@@ -10,6 +10,8 @@ export const HTTP_STATUS = {
   BAD_REQUEST: 400,
   NOT_FOUND: 404,
   GONE: 410,
+  UNAUTHENTICATED: 401,
+  FORBIDDEN: 402,
 
   // Server errors
   INTERNAL_SERVER_ERROR: 500,
@@ -24,4 +26,6 @@ export const STATUS_TEXT: Record<number, string> = {
   404: "Not Found",
   500: "Internal Server Error",
   410: "Gone",
+  403: "Forbidden",
+  401: "Unauthenticated",
 };

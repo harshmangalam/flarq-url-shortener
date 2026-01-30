@@ -26,6 +26,7 @@ export const createAuth = (c: Context) => {
 };
 
 export type AuthInstance = ReturnType<typeof createAuth>;
+
 export type AuthType = {
   user: AuthInstance["$Infer"]["Session"]["user"] | null;
   session: AuthInstance["$Infer"]["Session"]["session"] | null;

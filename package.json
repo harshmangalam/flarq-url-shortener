@@ -9,9 +9,11 @@
     "auth-generate": "pnpx @better-auth/cli@latest generate --config src/lib/auth/auth.node.ts --output src/lib/db/schema/auth.ts"
   },
   "dependencies": {
+    "@hono/standard-validator": "^0.2.2",
     "better-auth": "^1.4.17",
     "drizzle-orm": "^0.45.1",
-    "hono": "^4.11.4"
+    "hono": "^4.11.4",
+    "valibot": "^1.2.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260118.0",
