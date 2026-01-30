@@ -1,5 +1,6 @@
 import { sql } from "drizzle-orm";
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { user } from "./auth";
 
 export const urlsTable = sqliteTable("urls", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -12,4 +13,7 @@ export const urlsTable = sqliteTable("urls", {
   expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
   isActive: integer("is_active", { mode: "boolean" }).notNull().default(true),
   clicks: integer("clicks").notNull().default(0),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
 });

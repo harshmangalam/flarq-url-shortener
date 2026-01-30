@@ -8,7 +8,7 @@ Each item is intentionally small so it can be picked up and implemented one by o
 ## Core Enhancements
 
 - **User Authentication**  
-  Add API key or JWT-based authentication for managing user-owned URLs.
+  Add authentication for managing user-owned URLs.
 
 - **URL Ownership**  
   Associate short URLs with users and enforce access control.

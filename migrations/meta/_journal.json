@@ -29,6 +29,13 @@
       "when": 1769579332953,
       "tag": "0003_bent_blade",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1769757625456,
+      "tag": "0004_smart_dragon_lord",
+      "breakpoints": true
     }
   ]
 }
