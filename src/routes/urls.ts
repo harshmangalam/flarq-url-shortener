@@ -19,6 +19,20 @@ const schema = v.object({
 
 const urlsRoutes = createRouter();
 
+urlsRoutes.get("/", async (c) => {
+  const db = drizzle(c.env.DB);
+  const urls = await db.select().from(urlsTable);
+  const results = urls.map((url) => ({
+    ...url,
+    shortUrl: c.env.DOMAIN + "/" + url.shortCode,
+  }));
+  return c.json({
+    success: true,
+    data: {
+      urls: results,
+    },
+  });
+});
 urlsRoutes.post(
   "/",
   sValidator("json", schema, (result, c) => {

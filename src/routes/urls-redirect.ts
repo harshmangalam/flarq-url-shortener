@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { CachedUrl } from "../types/cache";
 import { HTTP_STATUS, STATUS_TEXT } from "../utils/http-status";
 import { createRouter } from "@/utils/router";
+import { incrementClick } from "@/durable/click-counter";
 
 const urlRedirectRoutes = createRouter();
 
@@ -28,6 +29,8 @@ urlRedirectRoutes.get("/:shortCode", async (c) => {
     if (cached.expiresAt && cached.expiresAt < Date.now()) {
       return c.text("Link expired", HTTP_STATUS.GONE);
     }
+
+    incrementClick(c.env, shortCode);
 
     return c.redirect(cached.longUrl, HTTP_STATUS.FOUND);
   }
@@ -81,6 +84,8 @@ urlRedirectRoutes.get("/:shortCode", async (c) => {
     }),
     { expirationTtl },
   );
+
+  incrementClick(c.env, shortCode);
   return c.redirect(longUrl, HTTP_STATUS.FOUND);
 });
 

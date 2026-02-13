@@ -64,3 +64,11 @@ Pass the `CloudflareBindings` as generics when instantiation `Hono`:
 // src/index.ts
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 ```
+
+## Folder Structure
+
+`/durable/*`
+
+- Durable Objects are infrastructure primitives.
+- They’re not routes, not services, not DB.
+- Cloudflare Durable Objects must be classes. 100% required. No workaround. it’s part of the runtime contract.

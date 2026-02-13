@@ -3,7 +3,7 @@ import authRoutes from "./routes/auth";
 import urlsRoutes from "./routes/urls";
 import urlRedirectRoutes from "./routes/urls-redirect";
 import { createRouter } from "./utils/router";
-
+export { ClickCounter } from "@/durable";
 const app = createRouter();
 
 // auth middleware
